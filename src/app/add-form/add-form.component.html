@@ -1,0 +1,45 @@
+<div class="add-form-container">
+    <form
+      [formGroup]="form"
+      (ngSubmit)="onSubmit()"
+      class="add-form-container__form"
+    >
+      <div class="add-form-container__input-group">
+        <label for="userId" class="add-form-container__label">User Id :</label>
+        <input
+          type="number"
+          name="userId"
+          class="add-form-container__input"
+          formControlName="userId"
+          placeholder="User Id"
+        />
+      </div>
+      <div class="add-form-container__input-group">
+        <label for="taskTitle" class="add-form-container__label">Task title :</label>
+        <input
+          type="text"
+          name="taskTitle"
+          class="add-form-container__input"
+          formControlName="taskTitle"
+          placeholder="Title"
+        />
+      </div>
+      <div class="add-form-container__input-group">
+        <label for="completed" class="add-form-container__label">Completed :</label>
+        <input
+          type="text"
+          name="completed"
+          class="add-form-container__input"
+          formControlName="completed"
+          placeholder="True or False"
+        />
+      </div>
+      <button type="submit" class="add-form-container__btn">Save</button>
+    </form>
+  
+    <div class="add-form-container__response">
+      <H4>{{ message }}</H4>
+      <p>{{ responseText | json }}</p>
+    </div>
+  </div>
+  

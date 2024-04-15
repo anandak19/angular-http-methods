@@ -1,0 +1,55 @@
+<div class="fetch-form-container">
+    <div class="fetch-form-container__controls">
+      <button class="fetch-form-container__btn" (click)="showTasks()">
+        Get All Details
+      </button>
+      <div class="fetch-form-container__search">
+        <form #f="ngForm" (ngSubmit)="search()">
+          <label for="">Enter User ID: </label>
+          <input
+            type="text"
+            name="userInputId"
+            id=""
+            class="fetch-form-container__input"
+            [(ngModel)]="userInputId"
+            placeholder="User Id (ex: 5)"
+          />
+          <button type="submit" class="fetch-form-container__btn">
+            Get Details
+          </button>
+        </form>
+      </div>
+    </div>
+  
+    <div class="fetch-form-container__table">
+      <table>
+        <thead>
+          <tr>
+            <th>Sl No</th>
+            <th>User ID</th>
+            <th>Task Title</th>
+            <th>Completed</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (task of taskDetails; track $index) {
+  
+          <tr>
+            <td>{{ $index+1 }}</td>
+            <td>{{ task.userId }}</td>
+            <td>{{ task.title }}</td>
+            <td>{{ task.completed }}</td>
+          </tr>
+          }@empty {
+          <tr>
+            <td>--</td>
+            <td>--</td>
+            <td>--</td>
+            <td>--</td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

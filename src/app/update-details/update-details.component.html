@@ -1,0 +1,74 @@
+<div class="update-container">
+  <div class="update-container__task-display">
+    <h2 class="update-container__title">Task List</h2>
+
+    <div class="update-container__task-tiles">
+      @for (task of taskDetails; track $index) {
+      <div class="update-container__tile">
+        <p>{{task.id}}</p>
+        <h3>{{ "User: " + task.userId }}</h3>
+        <p>{{ "Task: " + task.title }}</p>
+        <p>{{ task.completed ? "Completed" : "Not Completed" }}</p>
+        <button class="update-container__control-btn" (click)="updateBtnClicked(task.id)">Update</button>
+        <button class="update-container__control-btn" (click)="deleteTodo(task.id)">Delete</button>
+        <button class="update-container__control-btn" (click)="completedBtnClicked(task.id)">Completed</button>
+      </div>
+      }
+    </div>
+  </div>
+
+
+  <div class="update-container__update-form">
+    <form
+      [formGroup]="form"
+      (ngSubmit)="updateTask()"
+      class="update-container__form"
+    >
+    <h2 class="update-container__title">Edit here</h2>
+      <div class="update-container__input-group">
+        <label for="userId" class="update-container__label">User Id :</label>
+        <input
+          type="number"
+          name="userId"
+          class="update-container__input"
+          formControlName="userId"
+          placeholder="User Id"
+          [readonly]="notUpdating"
+        />
+      </div>
+
+      <div class="update-container__input-group">
+        <label for="taskTitle" class="update-container__label"
+          >Task title :</label>
+        <input
+          type="text"
+          name="taskTitle"
+          class="update-container__input"
+          formControlName="taskTitle"
+          placeholder="Title"
+          [readonly]="notUpdating"
+        />
+      </div>
+
+      <div class="update-container__input-group">
+        <label for="completed" class="update-container__label"
+          >Completed :</label
+        >
+        <select
+          id="updateCompleted"
+          name="updateCompleted"
+          formControlName="completed"
+          class="update-container__input"
+        >
+          <option [ngValue]="true">Yes</option>
+          <option [ngValue]="false">No</option>
+        </select>
+      </div>
+      <button type="submit" class="update-container__submit-btn" [disabled]="notUpdating">Save</button>
+    </form>
+    <div class="update-container__response">
+      <H4>{{message}}</H4>
+      <p>{{responseText | json}}</p>
+    </div>
+  </div>
+</div>
